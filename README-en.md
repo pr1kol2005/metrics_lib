@@ -5,6 +5,6 @@
 1. [Russian](README.md)
 2. [English](README-en.md)
 
-## Краткое описание
+## Short description
 
 TODO
