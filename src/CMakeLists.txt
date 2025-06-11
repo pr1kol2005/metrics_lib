@@ -1,14 +1,5 @@
 # add_subdirectory(another_dir)
 
-# add_executable(main_app main.cpp)
-
-# target_link_libraries(main_app PRIVATE
-#   another_dir)
-
-# target_include_directories(main_app PRIVATE
-#   ${CMAKE_SOURCE_DIR}/src
-# )
-
 # можно объединить в одну библиотеку:
 # add_library(some_lib INTERFACE)
 
