@@ -13,11 +13,14 @@ option(BUILD_TESTS "Build tests" OFF)
 set(SOURCE_DIR ${PROJECT_SOURCE_DIR}/src)
 set(TESTS_DIR ${PROJECT_SOURCE_DIR}/tests)
 set(EXTERNAL_DIR ${PROJECT_SOURCE_DIR}/external)
+set(EXAMPLES_DIR ${PROJECT_SOURCE_DIR}/examples)
 
+# do I need it?
 include_directories(${SOURCE_DIR})
 
 add_subdirectory(${SOURCE_DIR})
 add_subdirectory(${EXTERNAL_DIR})
+add_subdirectory(${EXAMPLES_DIR})
 
 if(BUILD_TESTS)
   enable_testing()
