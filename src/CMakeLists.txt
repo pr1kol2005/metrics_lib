@@ -10,3 +10,5 @@
 # target_link_libraries(db_lib INTERFACE
 #   some_dir
 # )
+
+# TODO : build libraries
