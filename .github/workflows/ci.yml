@@ -12,7 +12,7 @@ jobs:
   build-code:
     name: Build Code
     runs-on: ubuntu-latest
-    container: gcc:latest
+    container: silkeh/clang:latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -35,8 +35,8 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Install Git
-        run: apt-get update && apt-get install -y git
+      - name: Install Git & clang-format
+        run: apt-get update && apt-get install -y git clang-format
 
       - name: Make format script executable
         run: chmod +x scripts/check_format.sh
@@ -54,7 +54,7 @@ jobs:
   test-tidy:
     name: Test Tidy
     runs-on: ubuntu-latest
-    container: gcc:latest
+    container: silkeh/clang:latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -62,8 +62,8 @@ jobs:
       - name: Trust Git directory
         run: git config --global --add safe.directory '*'
 
-      - name: Install CMake
-        run: apt-get update && apt-get install -y cmake
+      - name: Install CMake & clang-tidy
+        run: apt-get update && apt-get install -y cmake clang-tidy
 
       - name: Init submodules
         run: git submodule update --init --recursive
@@ -80,7 +80,7 @@ jobs:
   test-code:
     name: Run Tests
     runs-on: ubuntu-latest
-    container: gcc:latest
+    container: silkeh/clang:latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
