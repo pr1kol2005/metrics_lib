@@ -62,8 +62,8 @@ jobs:
       - name: Trust Git directory
         run: git config --global --add safe.directory '*'
 
-      - name: Install CMake & clang-tidy
-        run: apt-get update && apt-get install -y cmake clang-tidy
+      - name: Install CMake & Gir & clang-tidy
+        run: apt-get update && apt-get install -y cmake git clang-tidy
 
       - name: Init submodules
         run: git submodule update --init --recursive
@@ -88,8 +88,8 @@ jobs:
       - name: Trust Git directory
         run: git config --global --add safe.directory '*'
 
-      - name: Install CMake
-        run: apt-get update && apt-get install -y cmake
+      - name: Install CMake & Git
+        run: apt-get update && apt-get install -y cmake git
 
       - name: Init submodules
         run: git submodule update --init --recursive
