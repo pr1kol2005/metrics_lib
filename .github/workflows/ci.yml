@@ -1,0 +1,105 @@
+name: CI Pipeline
+
+on:
+  push:
+    branches-ignore:
+      - main
+  pull_request:
+
+jobs:
+  build-code:
+    name: Build Code
+    runs-on: ubuntu-latest
+    container: gcc:latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install CMake
+        run: |
+          apt-get update && apt-get install -y cmake
+
+      - name: Make build script executable
+        run: chmod +x scripts/build_project.sh
+
+      - name: Build project (BUILD_TESTS=OFF BUILD_EXAMPLES=ON)
+        run: ./scripts/build_project.sh BUILD_TESTS=OFF BUILD_EXAMPLES=ON
+
+  test-format:
+    name: Test Format
+    runs-on: ubuntu-latest
+    container: silkeh/clang:latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Git
+        run: apt-get update && apt-get install -y git
+
+      - name: Make format script executable
+        run: chmod +x scripts/check_format_ci.sh
+
+      - name: Run format check
+        run: ./scripts/check_format_ci.sh
+
+      - name: Upload diff.txt
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: diff
+          path: diff.txt
+
+  test-tidy:
+    name: Test Tidy
+    runs-on: ubuntu-latest
+    container: silkeh/clang:latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install CMake
+        run: apt-get update && apt-get install -y cmake
+
+      - name: Make tidy script executable
+        run: chmod +x scripts/check_tidy.sh
+
+      - name: Configure CMake
+        run: cmake -B build -D BUILD_TESTS=ON
+
+      - name: Run tidy check
+        run: ./scripts/check_tidy.sh
+
+  test-code:
+    name: Run Tests
+    runs-on: ubuntu-latest
+    container: gcc:latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install CMake
+        run: apt-get update && apt-get install -y cmake
+
+      - name: Init submodules
+        run: git submodule update --init --recursive
+
+      - name: Make build script executable
+        run: chmod +x scripts/build_project.sh
+
+      - name: Build project (BUILD_TESTS=ON BUILD_EXAMPLES=OFF)
+        run: ./scripts/build_project.sh BUILD_TESTS=ON BUILD_EXAMPLES=OFF
+
+      - name: Make test runner executable
+        run: chmod +x tests/run_tests.sh
+
+      - name: Run tests
+        run: GTEST_OUTPUT_XML=1 ./tests/run_tests.sh
+
+      - name: Upload test reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-reports
+          path: tests/reports/*.xml
+          reporter: junit
+
