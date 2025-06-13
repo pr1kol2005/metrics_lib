@@ -6,7 +6,7 @@ find src tests -name '*.hpp' -o -name '*.cpp' | while read file; do
   clang-format -i "$file";
 done
 
-git diff --ignore-submodules --color > diff.txt
+git diff --no-index --ignore-submodules --color > diff.txt
 
 cat diff.txt
 if [[ -s diff.txt ]]; then
