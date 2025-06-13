@@ -8,7 +8,13 @@ else
   BUILD_TESTS="OFF"
 fi
 
-cmake -B build -D BUILD_TESTS=$BUILD_TESTS
+if [ "$2" == "BUILD_EXAMPLES=ON" ]; then
+  BUILD_EXAMPLES="ON"
+else
+  BUILD_EXAMPLES="OFF"
+fi
+
+cmake -B build -D BUILD_TESTS=$BUILD_TESTS -D BUILD_EXAMPLES=$BUILD_EXAMPLES
 
 cmake --build build
 
