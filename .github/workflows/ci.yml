@@ -60,11 +60,14 @@ jobs:
       - name: Install CMake
         run: apt-get update && apt-get install -y cmake
 
+      - name: Init submodules
+        run: git submodule update --init --recursive
+
       - name: Make tidy script executable
         run: chmod +x scripts/check_tidy.sh
 
       - name: Configure CMake
-        run: cmake -B build -D BUILD_TESTS=ON
+        run: cmake -B build -D BUILD_TESTS=ON -D BUILD_EXAMPLES=ON
 
       - name: Run tidy check
         run: ./scripts/check_tidy.sh
