@@ -57,6 +57,9 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Trust Git directory
+        run: git config --global --add safe.directory '*'
+
       - name: Install CMake
         run: apt-get update && apt-get install -y cmake
 
@@ -79,6 +82,9 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+
+      - name: Trust Git directory
+        run: git config --global --add safe.directory '*'
 
       - name: Install CMake
         run: apt-get update && apt-get install -y cmake
