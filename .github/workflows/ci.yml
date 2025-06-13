@@ -59,11 +59,11 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Trust Git directory
-        run: git config --global --add safe.directory '*'
-
       - name: Install CMake & Gir & clang-tidy
         run: apt-get update && apt-get install -y cmake git clang-tidy
+
+      - name: Trust Git directory
+        run: git config --global --add safe.directory '*'
 
       - name: Init submodules
         run: git submodule update --init --recursive
@@ -85,11 +85,11 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Trust Git directory
-        run: git config --global --add safe.directory '*'
-
       - name: Install CMake & Git
         run: apt-get update && apt-get install -y cmake git
+
+      - name: Trust Git directory
+        run: git config --global --add safe.directory '*'
 
       - name: Init submodules
         run: git submodule update --init --recursive
