@@ -12,7 +12,7 @@ jobs:
   build-code:
     name: Build Code
     runs-on: ubuntu-latest
-    container: silkeh/clang:latest
+    container: gcc:latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -30,7 +30,7 @@ jobs:
   test-format:
     name: Test Format
     runs-on: ubuntu-latest
-    container: silkeh/clang:latest
+    container: gcc:latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -54,12 +54,12 @@ jobs:
   test-tidy:
     name: Test Tidy
     runs-on: ubuntu-latest
-    container: silkeh/clang:latest
+    container: gcc:latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Install CMake & Gir & clang-tidy
+      - name: Install CMake & Git & clang-tidy
         run: apt-get update && apt-get install -y cmake git clang-tidy
 
       - name: Trust Git directory
@@ -80,7 +80,7 @@ jobs:
   test-code:
     name: Run Tests
     runs-on: ubuntu-latest
-    container: silkeh/clang:latest
+    container: gcc:latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
