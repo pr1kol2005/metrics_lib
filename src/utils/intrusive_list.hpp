@@ -14,13 +14,9 @@ struct IntrusiveListNode {
   Node* prev = nullptr;
   Node* next = nullptr;
 
-  Node* Prev() noexcept {
-    return prev;
-  }
+  Node* Prev() noexcept { return prev; }
 
-  Node* Next() noexcept {
-    return next;
-  }
+  Node* Next() noexcept { return next; }
 
   // Links this node before next in list
 
@@ -34,9 +30,7 @@ struct IntrusiveListNode {
     that->prev = this;
   }
 
-  bool IsLinked() const noexcept {
-    return next != nullptr;
-  }
+  bool IsLinked() const noexcept { return next != nullptr; }
 
   // Precondition: IsLinked()
   void Unlink() noexcept {
@@ -48,9 +42,7 @@ struct IntrusiveListNode {
     next = prev = nullptr;
   }
 
-  T* AsItem() noexcept {
-    return static_cast<T*>(this);
-  }
+  T* AsItem() noexcept { return static_cast<T*>(this); }
 };
 
 // ANCHOR : Circular doubly-linked intrusive list
@@ -61,9 +53,7 @@ class IntrusiveList {
   using List = IntrusiveList<T>;
 
  public:
-  IntrusiveList() {
-    InitEmpty();
-  }
+  IntrusiveList() { InitEmpty(); }
 
   // Intentionally disabled
   IntrusiveList& operator=(List&& that) = delete;
@@ -77,17 +67,11 @@ class IntrusiveList {
   IntrusiveList(const List& that) = delete;
   IntrusiveList& operator=(const List& that) = delete;
 
-  ~IntrusiveList() {
-    assert(IsEmpty());
-  }
+  ~IntrusiveList() { assert(IsEmpty()); }
 
-  void PushBack(Node* node) noexcept {
-    node->LinkBefore(&enter_);
-  }
+  void PushBack(Node* node) noexcept { node->LinkBefore(&enter_); }
 
-  void PushFront(Node* node) noexcept {
-    node->LinkBefore(FrontNode());
-  }
+  void PushFront(Node* node) noexcept { node->LinkBefore(FrontNode()); }
 
   // Precondition: NonEmpty()
   T* PopFrontNonEmpty() noexcept {
@@ -135,17 +119,11 @@ class IntrusiveList {
 
   // ANCHOR : IsEmpty
 
-  bool IsEmpty() const noexcept {
-    return enter_.next == &enter_;
-  }
+  bool IsEmpty() const noexcept { return enter_.next == &enter_; }
 
-  bool NonEmpty() const noexcept {
-    return !IsEmpty();
-  }
+  bool NonEmpty() const noexcept { return !IsEmpty(); }
 
-  bool HasItems() const noexcept {
-    return !IsEmpty();
-  }
+  bool HasItems() const noexcept { return !IsEmpty(); }
 
   // ANCHOR :FrontNonEmpty
   // Precondition: NonEmpty()
@@ -255,25 +233,15 @@ class IntrusiveList {
   }
 
  private:
-  void InitEmpty() {
-    enter_.next = enter_.prev = &enter_;
-  }
+  void InitEmpty() { enter_.next = enter_.prev = &enter_; }
 
-  Node* FrontNode() noexcept {
-    return enter_.next;
-  }
+  Node* FrontNode() noexcept { return enter_.next; }
 
-  const Node* FrontNode() const noexcept {
-    return enter_.next;
-  }
+  const Node* FrontNode() const noexcept { return enter_.next; }
 
-  Node* BackNode() noexcept {
-    return enter_.prev;
-  }
+  Node* BackNode() noexcept { return enter_.prev; }
 
-  const Node* BackNode() const noexcept {
-    return enter_.prev;
-  }
+  const Node* BackNode() const noexcept { return enter_.prev; }
 
  private:
   Node enter_;  // Sentinel node
