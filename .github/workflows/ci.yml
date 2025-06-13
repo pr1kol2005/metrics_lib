@@ -52,7 +52,7 @@ jobs:
   test-tidy:
     name: Test Tidy
     runs-on: ubuntu-latest
-    container: silkeh/clang:latest
+    container: gcc:latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
