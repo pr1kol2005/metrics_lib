@@ -110,5 +110,9 @@ jobs:
         with:
           name: test-reports
           path: tests/reports/*.xml
-          reporter: junit
+
+      - name: Publish test reports
+        uses: mikepenz/action-junit-report@v4
+        with:
+          report_paths: 'tests/reports/*.xml'
 
