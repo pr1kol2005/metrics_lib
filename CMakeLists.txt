@@ -7,22 +7,26 @@ set(CMAKE_CXX_STANDARD 20)
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/bin)
 
-# cmake -B build -DBUILD_TESTS=ON
+# Explicit: cmake -B build -D BUILD_TESTS=ON -D BUILD_TESTS=ON
 option(BUILD_TESTS "Build tests" OFF)
+option(BUILD_EXAMPLES "Build examples" OFF)
 
 set(SOURCE_DIR ${PROJECT_SOURCE_DIR}/src)
 set(TESTS_DIR ${PROJECT_SOURCE_DIR}/tests)
 set(EXTERNAL_DIR ${PROJECT_SOURCE_DIR}/external)
 set(EXAMPLES_DIR ${PROJECT_SOURCE_DIR}/examples)
 
-# do I need it?
+# TODO : check if it is needed
 include_directories(${SOURCE_DIR})
 
 add_subdirectory(${SOURCE_DIR})
-add_subdirectory(${EXTERNAL_DIR})
-add_subdirectory(${EXAMPLES_DIR})
+
+if(BUILD_EXAMPLES)
+  add_subdirectory(${EXAMPLES_DIR})
+endif()
 
 if(BUILD_TESTS)
   enable_testing()
   add_subdirectory(${TESTS_DIR})
+  add_subdirectory(${EXTERNAL_DIR})
 endif()
