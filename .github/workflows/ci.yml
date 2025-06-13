@@ -2,9 +2,11 @@ name: CI Pipeline
 
 on:
   push:
-    branches-ignore:
-      - main
   pull_request:
+
+permissions:
+  checks: write
+  contents: read
 
 jobs:
   build-code:
