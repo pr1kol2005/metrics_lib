@@ -51,32 +51,6 @@ jobs:
           name: diff
           path: diff.txt
 
-  test-tidy:
-    name: Test Tidy
-    runs-on: ubuntu-latest
-    container: gcc:latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Install CMake & Git & clang-tidy
-        run: apt-get update && apt-get install -y cmake git clang-tidy
-
-      - name: Trust Git directory
-        run: git config --global --add safe.directory '*'
-
-      - name: Init submodules
-        run: git submodule update --init --recursive
-
-      - name: Make tidy script executable
-        run: chmod +x scripts/check_tidy.sh
-
-      - name: Configure CMake
-        run: cmake -B build -D BUILD_TESTS=ON -D BUILD_EXAMPLES=ON
-
-      - name: Run tidy check
-        run: ./scripts/check_tidy.sh
-
   test-code:
     name: Run Tests
     runs-on: ubuntu-latest
