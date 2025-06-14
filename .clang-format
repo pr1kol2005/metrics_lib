@@ -59,7 +59,7 @@ BreakAfterJavaFieldAnnotations: false
 BreakArrays: true  # json only
 BreakBeforeBinaryOperators: None
 BreakBeforeBraces: Attach
-BreakBeforeConceptDeclarations: Always
+BreakBeforeConceptDeclarations: true
 BreakBeforeInheritanceComma: false
 BreakBeforeTernaryOperators: true
 BreakConstructorInitializers: BeforeColon
