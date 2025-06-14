@@ -4,6 +4,8 @@
 
 #include "metric_interface.hpp"
 
+namespace metrics {
+
 template <typename T>
 class UnorderedMetricBase : public IMetric {
  public:
@@ -21,3 +23,5 @@ class UnorderedMetricBase : public IMetric {
   const std::string name_;
   lf::LockFreeStack<T> buffer_;
 };
+
+}  // namespace metrics

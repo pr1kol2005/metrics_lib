@@ -6,6 +6,8 @@
 #include <random>
 #include <thread>
 
+using namespace metrics;
+
 int main() {
   auto& cpu1 = RegisterMetric<AverageMetric<double>>("CPU1");
   auto& cpu2 = RegisterMetric<AverageMetric<double>>("CPU2");

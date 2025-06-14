@@ -10,6 +10,8 @@
 
 #include "registry.hpp"
 
+namespace metrics {
+
 class MetricsWriter {
  public:
   MetricsWriter(const std::string& filename,
@@ -67,3 +69,5 @@ class MetricsWriter {
   std::atomic<bool> running_{false};
   std::thread thread_;
 };
+
+}  // namespace metrics

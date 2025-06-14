@@ -2,6 +2,8 @@
 
 #include <string>
 
+namespace metrics {
+
 class IMetric {
  public:
   virtual ~IMetric() = default;
@@ -10,3 +12,5 @@ class IMetric {
 
   virtual const std::string& GetName() const noexcept = 0;
 };
+
+}  // namespace metrics

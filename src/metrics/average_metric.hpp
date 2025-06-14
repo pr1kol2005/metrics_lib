@@ -2,6 +2,8 @@
 
 #include "unordered_metric_base.hpp"
 
+namespace metrics {
+
 template <typename T>
 class AverageMetric : public UnorderedMetricBase<T> {
  public:
@@ -18,3 +20,5 @@ class AverageMetric : public UnorderedMetricBase<T> {
     return std::to_string(avg);
   }
 };
+
+}  // namespace metrics

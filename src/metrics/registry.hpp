@@ -4,6 +4,8 @@
 
 #include "metric_interface.hpp"
 
+namespace metrics {
+
 // Singleton
 class Registry {
  public:
@@ -47,3 +49,5 @@ template <typename MetricType, typename... Args>
 MetricType& RegisterMetric(Args&&... args) {
   return Registry::Instance().Register<MetricType>(std::forward<Args>(args)...);
 }
+
+}  // namespace metrics

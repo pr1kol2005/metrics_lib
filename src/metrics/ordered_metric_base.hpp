@@ -4,6 +4,8 @@
 
 #include "metric_interface.hpp"
 
+namespace metrics {
+
 template <typename T>
 class OrderedMetricBase : public IMetric {
  public:
@@ -21,3 +23,5 @@ class OrderedMetricBase : public IMetric {
   const std::string name_;
   lf::LockFreeQueue<T> buffer_;
 };
+
+}  // namespace metrics
