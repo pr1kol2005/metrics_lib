@@ -16,9 +16,6 @@ set(TESTS_DIR ${PROJECT_SOURCE_DIR}/tests)
 set(EXTERNAL_DIR ${PROJECT_SOURCE_DIR}/external)
 set(EXAMPLES_DIR ${PROJECT_SOURCE_DIR}/examples)
 
-# TODO : check if it is needed
-include_directories(${SOURCE_DIR})
-
 add_subdirectory(${SOURCE_DIR})
 
 if(BUILD_EXAMPLES)
