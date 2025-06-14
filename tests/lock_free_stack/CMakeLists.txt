@@ -4,4 +4,8 @@ target_link_libraries(lock_free_stack_unit
   PRIVATE lf gtest_main
 )
 
-# add_test(NAME LockFreeStackUnit COMMAND lock_free_stack_unit)
+# add_executable(lock_free_stack_stress unit.cpp)
+
+# target_link_libraries(lock_free_stack_stress
+#   PRIVATE lf gtest_main
+# )
