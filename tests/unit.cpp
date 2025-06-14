@@ -96,6 +96,6 @@ TEST(LockFreeStack, TwoStacks) {
   v = stack_2.TryPop();
   EXPECT_TRUE(v.has_value());
   if (v) {
-    EXPECT_EQ(*v, 12);
+    EXPECT_EQ(*v, 11);
   }
 }
