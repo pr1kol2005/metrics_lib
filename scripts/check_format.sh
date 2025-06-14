@@ -2,18 +2,21 @@
 
 echo "Launching clang-format check..."
 
-find src tests -name '*.hpp' -o -name '*.cpp' | while read file; do
-  clang-format -i "$file";
+FAILED=0
+
+FILES=$(find src tests -type f \( -name '*.cpp' -o -name '*.hpp' \))
+
+for file in $FILES; do
+  if ! diff -u "$file" <(clang-format "$file"); then
+    echo "File $file is not properly formatted"
+    FAILED=1
+  fi
 done
 
-git diff --no-index --ignore-submodules --color > diff.txt
-
-cat diff.txt
-if [[ -s diff.txt ]]; then
-  echo "❌ clang-format failed";
-  exit 1;
+if [[ $FAILED -ne 0 ]]; then
+  echo "❌ clang-format check failed"
+  exit 1
 fi
 
 echo "✅ clang-format check passed"
-
 exit 0

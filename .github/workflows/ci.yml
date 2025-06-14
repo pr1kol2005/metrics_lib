@@ -44,13 +44,6 @@ jobs:
       - name: Run format check
         run: ./scripts/check_format.sh
 
-      - name: Upload diff.txt
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: diff
-          path: diff.txt
-
   test-code:
     name: Run Tests
     runs-on: ubuntu-latest
