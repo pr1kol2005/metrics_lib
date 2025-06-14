@@ -7,7 +7,7 @@ set(CMAKE_CXX_STANDARD 20)
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/bin)
 
-# Explicit: cmake -B build -D BUILD_TESTS=ON -D BUILD_TESTS=ON
+# Explicit: cmake -B build -D BUILD_TESTS=ON -D BUILD_EXAMPLES=ON
 option(BUILD_TESTS "Build tests" OFF)
 option(BUILD_EXAMPLES "Build examples" OFF)
 
