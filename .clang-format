@@ -23,4 +23,3 @@ IncludeCategories:
     CaseSensitive:   false
 IncludeIsMainRegex: '([-_](test|unittest))?$'
 IncludeIsMainSourceRegex: ""
-SortIncludes: CaseSensitive
