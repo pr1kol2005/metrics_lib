@@ -7,7 +7,7 @@
 // Singleton
 class Registry {
  public:
-  inline static Registry& Instance() {
+  static Registry& Instance() {
     static Registry instance;
     return instance;
   }
@@ -44,6 +44,6 @@ inline std::vector<IMetric*>& GetMetrics() {
 }
 
 template <typename MetricType, typename... Args>
-inline MetricType& RegisterMetric(Args&&... args) {
+MetricType& RegisterMetric(Args&&... args) {
   return Registry::Instance().Register<MetricType>(std::forward<Args>(args)...);
 }
