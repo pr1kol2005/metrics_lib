@@ -1,11 +1,11 @@
 #pragma once
 
-#include "ordered_metric_base.hpp"
+#include "unordered_metric_base.hpp"
 
 template <typename T>
-class AverageMetric : public OrderedMetricBase<T> {
+class AverageMetric : public UnorderedMetricBase<T> {
  public:
-  using OrderedMetricBase<T>::OrderedMetricBase;
+  using UnorderedMetricBase<T>::UnorderedMetricBase;
 
   std::string AggregateAndReset() noexcept final {
     T sum{};
