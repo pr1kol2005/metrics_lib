@@ -1,9 +1,9 @@
 #pragma once
 
+#include <hazard/user.hpp>
+
 #include <atomic>
 #include <optional>
-
-#include <hazard/user.hpp>
 
 namespace lf {
 

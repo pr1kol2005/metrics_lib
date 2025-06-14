@@ -1,8 +1,8 @@
 #pragma once
 
-#include <concepts>
-
 #include <utils/intrusive_list.hpp>
+
+#include <concepts>
 
 namespace hazard {
 
