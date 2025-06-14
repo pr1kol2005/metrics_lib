@@ -85,5 +85,4 @@ jobs:
         with:
           report_paths: 'tests/reports/*.xml'
           fail_on_failure: true
-          include_passed: true
 
