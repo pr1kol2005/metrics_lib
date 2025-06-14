@@ -2,7 +2,7 @@
 
 #include <gtest/gtest.h>
 
-TEST(LockFreeStack, JustWorks) {
+TEST(LockFreeStackUnit, JustWorks) {
   lf::LockFreeStack<std::string> stack;
 
   stack.Push("Data");
@@ -16,7 +16,7 @@ TEST(LockFreeStack, JustWorks) {
   EXPECT_FALSE(empty.has_value());
 }
 
-TEST(LockFreeStack, LIFO) {
+TEST(LockFreeStackUnit, LIFO) {
   lf::LockFreeStack<int> stack;
 
   stack.Push(1);
@@ -44,7 +44,7 @@ TEST(LockFreeStack, LIFO) {
   EXPECT_FALSE(stack.TryPop().has_value());
 }
 
-TEST(LockFreeStack, Destructor) {
+TEST(LockFreeStackUnit, Destructor) {
   {
     lf::LockFreeStack<std::string> stack;
     stack.Push("Hello");
@@ -64,7 +64,7 @@ struct MoveOnly {
   MoveOnly& operator=(const MoveOnly&) = delete;
 };
 
-TEST(LockFreeStack, MoveOnlyValue) {
+TEST(LockFreeStackUnit, MoveOnlyValue) {
   lf::LockFreeStack<MoveOnly> stack;
   stack.Push(MoveOnly{});
   EXPECT_TRUE(stack.TryPop().has_value());
@@ -74,13 +74,13 @@ struct NonDefaultConstructible {
   explicit NonDefaultConstructible(int) {}
 };
 
-TEST(LockFreeStack, NonDefaultConstructibleValue) {
+TEST(LockFreeStackUnit, NonDefaultConstructibleValue) {
   lf::LockFreeStack<NonDefaultConstructible> stack;
   stack.Push(NonDefaultConstructible{7});
   EXPECT_TRUE(stack.TryPop().has_value());
 }
 
-TEST(LockFreeStack, TwoStacks) {
+TEST(LockFreeStackUnit, TwoStacks) {
   lf::LockFreeStack<int> stack_1;
   lf::LockFreeStack<int> stack_2;
 

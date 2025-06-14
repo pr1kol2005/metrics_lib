@@ -13,9 +13,9 @@ if [[ "$GTEST_OUTPUT_XML" == 1 ]]; then
 fi
 
 if [[ "$GTEST_OUTPUT_XML" == 1 ]]; then
-  ./bin/unit --gtest_output=xml:tests/reports/unit_results.xml
+  ./bin/lock_free_stack_unit --gtest_output=xml:tests/reports/unit_results.xml
 else
-  ./bin/unit
+  ./bin/lock_free_stack_unit
 fi
 
 exit 0

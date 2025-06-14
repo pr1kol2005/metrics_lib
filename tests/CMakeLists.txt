@@ -1,7 +1,3 @@
-add_executable(unit unit.cpp)
-
-target_link_libraries(unit
-  PRIVATE lf gtest gtest_main
-)
-
-add_test(NAME UnitTests COMMAND unit)
+add_subdirectory(intrusive_list)
+add_subdirectory(lock_free_queue)
+add_subdirectory(lock_free_stack)
