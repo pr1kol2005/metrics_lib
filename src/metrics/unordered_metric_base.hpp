@@ -1,7 +1,8 @@
 #pragma once
 
-#include "metric_interface.hpp"
 #include <lf/lock_free_stack.hpp>
+
+#include "metric_interface.hpp"
 
 template <typename T>
 class UnorderedMetricBase : public IMetric {

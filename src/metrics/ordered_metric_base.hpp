@@ -1,8 +1,8 @@
 #pragma once
 
-#include "metric_interface.hpp"
-
 #include <lf/lock_free_queue.hpp>
+
+#include "metric_interface.hpp"
 
 template <typename T>
 class OrderedMetricBase : public IMetric {
