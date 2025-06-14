@@ -183,7 +183,6 @@ RequiresClausePosition: OwnLineWithBrace
 RequiresExpressionIndentation: OuterScope
 SeparateDefinitionBlocks: Leave
 ShortNamespaceLines: 2
-SkipMacroDefinitionBody: false
 SortIncludes: CaseSensitive
 SortUsingDeclarations: true
 SpaceAfterCStyleCast: false
