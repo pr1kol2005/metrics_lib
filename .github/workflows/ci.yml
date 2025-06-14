@@ -71,7 +71,7 @@ jobs:
         run: chmod +x tests/run_tests.sh
 
       - name: Run tests
-        run: GTEST_OUTPUT_XML=1 ./tests/run_tests.sh
+        run: ./tests/run_tests.sh --output-xml
 
       - name: Upload test reports
         if: always()
