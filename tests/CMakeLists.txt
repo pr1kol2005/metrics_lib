@@ -1,5 +1,7 @@
-# add_subdirectory(another_test_directory)
+add_executable(unit unit.cpp)
 
-# add_custom_target(all_tests DEPENDS another_test_directory_tests)
+target_link_libraries(unit
+  PRIVATE lf gtest gtest_main
+)
 
-# TODO : add googletests
+add_test(NAME UnitTests COMMAND unit)
