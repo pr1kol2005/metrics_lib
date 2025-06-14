@@ -185,7 +185,7 @@ SeparateDefinitionBlocks: Leave
 ShortNamespaceLines: 2
 SkipMacroDefinitionBody: false
 SortIncludes: CaseSensitive
-SortUsingDeclarations: Lexicographic
+SortUsingDeclarations: true
 SpaceAfterCStyleCast: false
 SpaceAfterLogicalNot: false
 SpaceAfterTemplateKeyword: true
