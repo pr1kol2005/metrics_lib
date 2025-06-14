@@ -20,11 +20,9 @@ class PtrOwner {
 
     T* ptr;
     do {
-      ptr = atomic_ptr.load();
+      ptr = atomic_ptr.load(std::memory_order_acquire);
       hazard_ptr_->Set(ptr);
     } while (ptr != atomic_ptr.load(std::memory_order_acquire));
-
-    assert(hazard_ptr_->Get() == atomic_ptr.load());
 
     return ptr;
   }
