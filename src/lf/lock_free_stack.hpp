@@ -26,7 +26,8 @@ class LockFreeStack {
     Node* new_node = new Node(std::move(value));
     new_node->next = top_.load();
 
-    while (!top_.compare_exchange_weak(new_node->next, new_node)) {}
+    while (!top_.compare_exchange_weak(new_node->next, new_node)) {
+    }
   }
 
   // Try pop from top
