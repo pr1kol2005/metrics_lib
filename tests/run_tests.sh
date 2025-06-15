@@ -18,12 +18,16 @@ if [[ "$GTEST_OUTPUT_XML" == 1 ]]; then
   ./bin/lock_free_queue_stress --gtest_output=xml:tests/reports/lock_free_queue_stress_results.xml
   ./bin/lock_free_stack_unit --gtest_output=xml:tests/reports/lock_free_stack_unit_results.xml
   ./bin/lock_free_stack_stress --gtest_output=xml:tests/reports/lock_free_stack_stress_results.xml
+  ./bin/metrics_unit --gtest_output=xml:tests/reports/lock_free_stack_stress_results.xml
+  ./bin/metrics_stress --gtest_output=xml:tests/reports/lock_free_stack_stress_results.xml
 else
   ./bin/intrusive_list_unit
   ./bin/lock_free_queue_unit
   ./bin/lock_free_queue_stress
   ./bin/lock_free_stack_unit
   ./bin/lock_free_stack_stress
+  ./bin/metrics_unit
+  ./bin/metrics_stress
 fi
 
 exit 0
