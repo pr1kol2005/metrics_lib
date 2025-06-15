@@ -4,6 +4,7 @@
 
 namespace metrics {
 
+// Implements a metric that records the average of event's values.
 template <typename T>
 class AverageMetric : public UnorderedMetricBase<T> {
  public:

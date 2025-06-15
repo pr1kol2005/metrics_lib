@@ -4,6 +4,7 @@
 
 namespace metrics {
 
+// Base interface class for all metrics.
 class IMetric {
  public:
   virtual ~IMetric() = default;
