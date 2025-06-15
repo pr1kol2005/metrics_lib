@@ -6,7 +6,7 @@
 
 namespace metrics {
 
-// Singleton
+// Singleton class that keeps track of all registered metrics.
 class Registry {
  public:
   static Registry& Instance() {
@@ -19,6 +19,7 @@ class Registry {
   Registry(Registry&&) = delete;
   Registry& operator=(Registry&&) = delete;
 
+  // Deregistration happens only once in the destructor.
   ~Registry() {
     for (auto* metric : metrics_) {
       delete metric;
@@ -29,7 +30,11 @@ class Registry {
   template <typename MetricType, typename... Args>
   MetricType& Register(Args&&... args) {
     auto* metric = new MetricType(std::forward<Args>(args)...);
-    metrics_.push_back(metric);
+    {
+      // Registration may happen concurrently.
+      std::lock_guard<std::mutex> lock(mutex_);
+      metrics_.push_back(metric);
+    }
     return *metric;
   }
 
@@ -38,6 +43,9 @@ class Registry {
  private:
   Registry() = default;
 
+  mutable std::mutex mutex_;
+  // std::vector is better than utils::IntrusiveList because of its contiguous
+  // memory layout.
   std::vector<IMetric*> metrics_;
 };
 
