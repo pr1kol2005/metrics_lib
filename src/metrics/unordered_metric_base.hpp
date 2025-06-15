@@ -6,6 +6,9 @@
 
 namespace metrics {
 
+// Base class for thread safe metrics that don't need recorded values to be
+// ordered. Uses a lock free stack that is more efficient than a lock free
+// queue.
 template <typename T>
 class UnorderedMetricBase : public IMetric {
  public:

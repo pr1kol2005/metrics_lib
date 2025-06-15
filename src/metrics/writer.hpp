@@ -12,6 +12,8 @@
 
 namespace metrics {
 
+// Periodically writes the current state of all metrics to a file in its own
+// thread. Should be explicitly started and stopped.
 class MetricsWriter {
  public:
   MetricsWriter(const std::string& filename,
