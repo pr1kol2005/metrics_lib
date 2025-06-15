@@ -6,7 +6,6 @@
 #include <random>
 #include <thread>
 #include <chrono>
-#include <iostream>
 
 using namespace metrics;
 
@@ -16,14 +15,14 @@ int main() {
   auto& rps  = RegisterMetric<CountMetric<int>>("HTTP requests RPS");
 
   MetricsWriter writer("example.log");
-  writer.Start();
 
-  // Источник случайных чисел
   std::mt19937_64 rng{std::random_device{}()};
   std::uniform_real_distribution<double> cpuDist(0.0, 2.0);
   std::uniform_int_distribution<int>    rpsDist(0, 100);
 
   auto end_point = std::chrono::steady_clock::now() + std::chrono::seconds(15);
+
+  writer.Start();
 
   std::vector<std::thread> workers;
   for (int i = 0; i < 4; ++i) {
