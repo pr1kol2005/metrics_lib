@@ -61,5 +61,4 @@ cmake --build build
 # запустите желаемые тесты
 ./bin/lock_free_stack_stress
 ./bin/metrics_unit
-
 ```
