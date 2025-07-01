@@ -10,7 +10,7 @@ class PtrOwner {
   friend class Mutator;
 
  public:
-  // Non-copyable
+  // Non-copyable.
   PtrOwner(const PtrOwner&) = delete;
   PtrOwner& operator=(const PtrOwner&) = delete;
 

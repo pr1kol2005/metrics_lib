@@ -14,7 +14,7 @@ struct PtrRecord {
   void Reset() { ptr_.store(nullptr); }
 
  private:
-  // Actual hazard pointer
+  // Actual hazard pointer.
   std::atomic<void*> ptr_{nullptr};
 };
 

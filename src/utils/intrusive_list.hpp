@@ -5,7 +5,7 @@
 
 namespace utils {
 
-// ANCHOR : Represents node of circular doubly-linked list
+// ANCHOR : Represents node of circular doubly-linked list.
 
 template <typename T>
 struct IntrusiveListNode {
@@ -18,9 +18,9 @@ struct IntrusiveListNode {
 
   Node* Next() noexcept { return next; }
 
-  // Links this node before next in list
+  // Links this node before next in list.
 
-  // Precondition: !IsLinked()
+  // Precondition: !IsLinked().
   void LinkBefore(Node* that) noexcept {
     assert(!IsLinked());
 
@@ -32,7 +32,7 @@ struct IntrusiveListNode {
 
   bool IsLinked() const noexcept { return next != nullptr; }
 
-  // Precondition: IsLinked()
+  // Precondition: IsLinked().
   void Unlink() noexcept {
     assert(IsLinked());
 
@@ -45,7 +45,7 @@ struct IntrusiveListNode {
   T* AsItem() noexcept { return static_cast<T*>(this); }
 };
 
-// ANCHOR : Circular doubly-linked intrusive list
+// ANCHOR : Circular doubly-linked intrusive list.
 
 template <typename T>
 class IntrusiveList {
@@ -55,7 +55,7 @@ class IntrusiveList {
  public:
   IntrusiveList() { InitEmpty(); }
 
-  // Intentionally disabled
+  // Intentionally disabled.
   IntrusiveList& operator=(List&& that) = delete;
 
   IntrusiveList(List&& that) {
@@ -63,7 +63,7 @@ class IntrusiveList {
     Append(that);
   }
 
-  // Non-copyable
+  // Non-copyable.
   IntrusiveList(const List& that) = delete;
   IntrusiveList& operator=(const List& that) = delete;
 
@@ -73,7 +73,7 @@ class IntrusiveList {
 
   void PushFront(Node* node) noexcept { node->LinkBefore(FrontNode()); }
 
-  // Precondition: NonEmpty()
+  // Precondition: NonEmpty().
   T* PopFrontNonEmpty() noexcept {
     assert(NonEmpty());
 
@@ -82,7 +82,7 @@ class IntrusiveList {
     return front->AsItem();
   }
 
-  // Returns nullptr if empty
+  // Returns nullptr if empty.
   T* TryPopFront() noexcept {
     if (IsEmpty()) {
       return nullptr;
@@ -90,12 +90,12 @@ class IntrusiveList {
     return PopFrontNonEmpty();
   }
 
-  // [[deprecated("Use TryPopFront")]]
-  // T* PopFront() noexcept {
-  //   return TryPopFront();
-  // }
+  [[deprecated("Use TryPopFront")]]
+  T* PopFront() noexcept {
+    return TryPopFront();
+  }
 
-  // Precondition: NonEmpty()
+  // Precondition: NonEmpty().
   T* PopBackNonEmpty() noexcept {
     assert(NonEmpty());
 
@@ -104,7 +104,7 @@ class IntrusiveList {
     return back->AsItem();
   }
 
-  // Returns nullptr if empty
+  // Returns nullptr if empty.
   T* TryPopBack() noexcept {
     if (IsEmpty()) {
       return nullptr;
@@ -112,12 +112,12 @@ class IntrusiveList {
     return PopBackNonEmpty();
   }
 
-  // [[deprecated("Use TryPopBack")]]
-  // T* PopBack() noexcept {
-  //   return TryPopBack();
-  // }
+  [[deprecated("Use TryPopBack")]]
+  T* PopBack() noexcept {
+    return TryPopBack();
+  }
 
-  // ANCHOR : IsEmpty
+  // ANCHOR : IsEmpty.
 
   bool IsEmpty() const noexcept { return enter_.next == &enter_; }
 
@@ -125,8 +125,8 @@ class IntrusiveList {
 
   bool HasItems() const noexcept { return !IsEmpty(); }
 
-  // ANCHOR :FrontNonEmpty
-  // Precondition: NonEmpty()
+  // ANCHOR :FrontNonEmpty.
+  // Precondition: NonEmpty().
 
   T* FrontNonEmpty() noexcept {
     assert(NonEmpty());
@@ -138,7 +138,7 @@ class IntrusiveList {
     return FrontNode()->AsItem();
   }
 
-  // ANCHOR : Front
+  // ANCHOR : Front.
 
   T* TryFront() noexcept {
     if (IsEmpty()) {
@@ -147,10 +147,10 @@ class IntrusiveList {
     return FrontNonEmpty();
   }
 
-  // [[deprecated("Use TryFront")]]
-  // T* Front() noexcept {
-  //   return TryFront();
-  // }
+  [[deprecated("Use TryFront")]]
+  T* Front() noexcept {
+    return TryFront();
+  }
 
   const T* TryFront() const noexcept {
     if (IsEmpty()) {
@@ -159,13 +159,13 @@ class IntrusiveList {
     return FrontNonEmpty();
   }
 
-  // [[deprecated("Use TryFront")]]
-  // const T* Front() const noexcept {
-  //   return TryFront();
-  // }
+  [[deprecated("Use TryFront")]]
+  const T* Front() const noexcept {
+    return TryFront();
+  }
 
-  // ANCHOR : BackNonEmpty
-  // Precondition: NonEmpty()
+  // ANCHOR : BackNonEmpty.
+  // Precondition: NonEmpty().
 
   T* BackNonEmpty() noexcept {
     assert(NonEmpty());
@@ -177,7 +177,7 @@ class IntrusiveList {
     return BackNode()->AsItem();
   }
 
-  // ANCHOR : Back
+  // ANCHOR : Back.
 
   T* TryBack() noexcept {
     if (IsEmpty()) {
@@ -186,10 +186,10 @@ class IntrusiveList {
     return BackNonEmpty();
   }
 
-  // [[deprecated("Use TryBack")]]
-  // T* Back() noexcept {
-  //   return TryBack();
-  // }
+  [[deprecated("Use TryBack")]]
+  T* Back() noexcept {
+    return TryBack();
+  }
 
   const T* TryBack() const noexcept {
     if (IsEmpty()) {
@@ -198,13 +198,13 @@ class IntrusiveList {
     return BackNonEmpty();
   }
 
-  // [[deprecated("Use TryBack")]]
-  // const T* Back() const noexcept {
-  //   return TryBack();
-  // }
+  [[deprecated("Use TryBack")]]
+  const T* Back() const noexcept {
+    return TryBack();
+  }
 
-  // Append (= move, re-link) all nodes from `that` list to the end of this list
-  // Post-condition: that.IsEmpty() == true
+  // Append (= move, re-link) all nodes from `that` list to the end of this list.
+  // Post-condition: that.IsEmpty() == true.
   void Append(List& that) noexcept {
     if (that.IsEmpty()) {
       return;
@@ -224,7 +224,7 @@ class IntrusiveList {
     that.enter_.next = that.enter_.prev = &that.enter_;
   }
 
-  // Complexity: O(1)
+  // Complexity: O(1).
   void Swap(List& that) {
     List tmp;
     tmp.Append(*this);
@@ -244,7 +244,7 @@ class IntrusiveList {
   const Node* BackNode() const noexcept { return enter_.prev; }
 
  private:
-  Node enter_;  // Sentinel node
+  Node enter_;  // Sentinel node.
 };
 
 }  // namespace utils

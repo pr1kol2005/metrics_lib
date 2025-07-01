@@ -7,7 +7,7 @@
 
 namespace lf {
 
-// Treiber unbounded MPMC lock-free stack
+// Treiber unbounded MPMC lock-free stack.
 
 template <typename T>
 class LockFreeStack {
@@ -21,7 +21,7 @@ class LockFreeStack {
  public:
   LockFreeStack() = default;
 
-  // Push to top
+  // Push to top.
   void Push(T value) {
     Node* new_node = new Node(std::move(value));
     new_node->next = top_.load();
@@ -30,7 +30,7 @@ class LockFreeStack {
     }
   }
 
-  // Try pop from top
+  // Try pop from top.
   std::optional<T> TryPop() {
     auto* mutator = hazard::GetMutator();
 

@@ -53,10 +53,10 @@ Mutator* GetMutator() { return Collector::Instance().GetMutator(); }
 
 //////////////////////////////////////////////////////////////////////
 
-// ANCHOR : Garbage collection logic
+// ANCHOR : Garbage collection logic.
 
 void Mutator::Gc() {
-  // Collect all protected pointers
+  // Collect all protected pointers.
   std::unordered_set<void*> protected_set;
   for (Mutator* m = collector_->head_.load(std::memory_order_acquire);
        m != nullptr; m = m->next_.load(std::memory_order_acquire)) {
@@ -67,7 +67,7 @@ void Mutator::Gc() {
     }
   }
 
-  // Filter and delete retired objects
+  // Filter and delete retired objects.
   utils::IntrusiveList<ManagedBase> tmp;
   retired_.Swap(tmp);
 

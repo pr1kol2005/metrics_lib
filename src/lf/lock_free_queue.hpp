@@ -7,7 +7,7 @@
 
 namespace lf {
 
-// Michael-Scott unbounded lock-free queue
+// Michael-Scott unbounded lock-free queue.
 
 template <typename T>
 class LockFreeQueue {
@@ -28,7 +28,7 @@ class LockFreeQueue {
     tail_.store(dummy);
   }
 
-  // Push to tail
+  // Push to tail.
   void Push(T value) {
     Node* new_tail = new Node(std::move(value));
 
@@ -57,7 +57,7 @@ class LockFreeQueue {
     }
   }
 
-  // Try pop from head
+  // Try pop from head.
   std::optional<T> TryPop() {
     auto mutator = hazard::GetMutator();
 

@@ -20,8 +20,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Install CMake
-        run: |
-          apt-get update && apt-get install -y cmake
+        run: apt-get update && apt-get install -y cmake
 
       - name: Make build script executable
         run: chmod +x scripts/build_project.sh
@@ -87,4 +86,3 @@ jobs:
         with:
           report_paths: 'tests/reports/*.xml'
           fail_on_failure: true
-

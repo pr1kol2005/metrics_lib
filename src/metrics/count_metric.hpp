@@ -11,7 +11,7 @@ class CountMetric : public UnorderedMetricBase<T> {
   using UnorderedMetricBase<T>::UnorderedMetricBase;
 
   std::string AggregateAndReset() noexcept final {
-    T sum = 0;
+    T sum{};
     while (auto opt = this->Buffer().TryPop()) {
       sum += *opt;
     }

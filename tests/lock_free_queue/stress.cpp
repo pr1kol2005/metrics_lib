@@ -8,7 +8,7 @@
 
 using lf::LockFreeQueue;
 
-TEST(LockFreeQueueStress, ManyProducersConsumers) {
+TEST(LockFreeQueueStressTest, ManyProducersConsumers) {
   constexpr int kNumProducers = 10;
   constexpr int kNumConsumers = 10;
   constexpr int kOpsPerProducer = 1'000'000;

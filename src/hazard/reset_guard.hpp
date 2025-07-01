@@ -8,7 +8,7 @@ class PtrResetGuard {
  public:
   explicit PtrResetGuard(PtrOwner& owner) : owner_(owner) {}
 
-  // Non-copyable
+  // Non-copyable.
   PtrResetGuard(const PtrResetGuard&) = delete;
   PtrResetGuard& operator=(const PtrResetGuard) = delete;
 
