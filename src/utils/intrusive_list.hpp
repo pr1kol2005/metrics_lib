@@ -203,8 +203,8 @@ class IntrusiveList {
     return TryBack();
   }
 
-  // Append (= move, re-link) all nodes from `that` list to the end of this list.
-  // Post-condition: that.IsEmpty() == true.
+  // Append (= move, re-link) all nodes from `that` list to the end of this
+  // list. Post-condition: that.IsEmpty() == true.
   void Append(List& that) noexcept {
     if (that.IsEmpty()) {
       return;
