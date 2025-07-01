@@ -90,8 +90,7 @@ class IntrusiveList {
     return PopFrontNonEmpty();
   }
 
-  [[deprecated("Use TryPopFront")]]
-  T* PopFront() noexcept {
+  [[deprecated("Use TryPopFront")]] T* PopFront() noexcept {
     return TryPopFront();
   }
 
@@ -112,8 +111,7 @@ class IntrusiveList {
     return PopBackNonEmpty();
   }
 
-  [[deprecated("Use TryPopBack")]]
-  T* PopBack() noexcept {
+  [[deprecated("Use TryPopBack")]] T* PopBack() noexcept {
     return TryPopBack();
   }
 
@@ -147,10 +145,7 @@ class IntrusiveList {
     return FrontNonEmpty();
   }
 
-  [[deprecated("Use TryFront")]]
-  T* Front() noexcept {
-    return TryFront();
-  }
+  [[deprecated("Use TryFront")]] T* Front() noexcept { return TryFront(); }
 
   const T* TryFront() const noexcept {
     if (IsEmpty()) {
@@ -159,8 +154,7 @@ class IntrusiveList {
     return FrontNonEmpty();
   }
 
-  [[deprecated("Use TryFront")]]
-  const T* Front() const noexcept {
+  [[deprecated("Use TryFront")]] const T* Front() const noexcept {
     return TryFront();
   }
 
@@ -186,10 +180,7 @@ class IntrusiveList {
     return BackNonEmpty();
   }
 
-  [[deprecated("Use TryBack")]]
-  T* Back() noexcept {
-    return TryBack();
-  }
+  [[deprecated("Use TryBack")]] T* Back() noexcept { return TryBack(); }
 
   const T* TryBack() const noexcept {
     if (IsEmpty()) {
@@ -198,8 +189,7 @@ class IntrusiveList {
     return BackNonEmpty();
   }
 
-  [[deprecated("Use TryBack")]]
-  const T* Back() const noexcept {
+  [[deprecated("Use TryBack")]] const T* Back() const noexcept {
     return TryBack();
   }
 
