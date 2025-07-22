@@ -7,7 +7,7 @@
 
 ## Overview
 
-`vk_metrics_lib` is a high-performance C++ library for collecting, aggregating, and periodically writing metrics to a text file. Key technologies used:
+`metrics_lib` is a high-performance C++ library for collecting, aggregating, and periodically writing metrics to a text file. Key technologies used:
 
 1. **Lock-free data structures**  
   `LockFreeQueue<T>` and `LockFreeStack<T>` allow recording data from worker threads without locks or race conditions, ensuring minimal latency.
@@ -47,8 +47,8 @@
 
 ```bash
 # Clone the repository
-git clone https://github.com/pr1kol2005/vk_metrics_lib.git
-cd vk_metrics_lib
+git clone https://github.com/pr1kol2005/metrics_lib.git
+cd metrics_lib
 
 # Build the project with tests and examples enabled
 cmake -B build -D BUILD_TESTS=ON -D BUILD_EXAMPLES=ON
