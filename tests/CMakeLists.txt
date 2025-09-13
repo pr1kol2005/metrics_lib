@@ -1,3 +1,5 @@
+include(GoogleTest)
+
 add_subdirectory(intrusive_list)
 add_subdirectory(lock_free_queue)
 add_subdirectory(lock_free_stack)
