@@ -9,3 +9,6 @@ add_executable(metrics_stress stress.cpp)
 target_link_libraries(metrics_stress
   PRIVATE metrics gtest_main
 )
+
+gtest_discover_tests(metrics_unit)
+gtest_discover_tests(metrics_stress)
